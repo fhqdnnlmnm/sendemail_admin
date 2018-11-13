@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Mail\Mailable;
+use Illuminate\Support\Facades\Mail;
+use  App\Mail\PriceQuotation;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,4 +18,8 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::get('/sendemail',function(){
+    Mail::to('fhqdnnlmnm@163.com')->send(new PriceQuotation());
 });
