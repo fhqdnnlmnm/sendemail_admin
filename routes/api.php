@@ -23,3 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/sendemail',function(){
     Mail::to('fhqdnnlmnm@163.com')->send(new PriceQuotation());
 });
+
+Route::get('/client_list','ClientController@index');
+
+//联系人操作的相关API

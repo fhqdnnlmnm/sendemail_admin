@@ -13,12 +13,14 @@ class ClientController extends Controller
 
     public function index(){
         $clients=Company::with(['contacts','category'])->get();
-        // return  $coms;
-        return view('client.index',['clients'=>$clients]);
+        // // return  $coms;
+        // return view('client.index',['clients'=>$clients]);
+        // return $clients->toJson();
+        return response()->json($clients);
     }
 
     public function edit($id){
         $com=Company::with(['contacts','category'])->find($id)->firstOrFail();
-        return view('company.edit',['com'=>$com]);
+        return $com;
     }
 }
