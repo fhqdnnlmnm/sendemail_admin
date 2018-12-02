@@ -4,8 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sender extends Model
+class EmailSender extends Model
 {
     //
-    protected $hidden=['created_at','updated_at'];
 }

@@ -20,8 +20,9 @@ class CreateContactsTable extends Migration
             $table->tinyInteger('sex'); #性别
             $table->string('post');#职位
             $table->string('email');#邮箱
-            $table->integer('com_id')->unsigned();#公司ID，外键；
-            $table->foreign('com_id')->references('id')->on('companies')->onDelete('cascade'); #定义外键,并在公司删除时，自动删除联系人；
+            $table->string('description');#备注
+            $table->integer('customer_id')->unsigned();
+            $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->timestamps();
         });
     }

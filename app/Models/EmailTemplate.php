@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmailTem extends Model
+class EmailTemplate extends Model
 {
     //
 }

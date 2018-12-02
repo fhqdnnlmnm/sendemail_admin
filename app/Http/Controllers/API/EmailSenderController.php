@@ -4,10 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Http\Resources\CategoryResource;
 
-class CategoryController extends Controller
+class EmailSenderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,7 +15,6 @@ class CategoryController extends Controller
     public function index()
     {
         //
-        return CategoryResource::collection(Category::all());
     }
 
     /**
@@ -39,7 +36,6 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
-        return Category::create($request->all());
     }
 
     /**
@@ -71,11 +67,9 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         //
-        $category->update($request->all());
-        return response()->json($category,202);
     }
 
     /**
@@ -87,31 +81,5 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-   // 2.1 获取类别的树形列表（用于显示）
-    public function getTreeList(Category $category)
-    {
-        // dump(Category::all()->toArray());
-        $cats = CategoryResource::collection(Category::all())->resolve();
-         // 引用算法
-        $items = array();
-        foreach($cats  as $value){
-            $items[$value['id']]=$value;
-        }
-        $tree = array();
-        foreach($items as $key => $value){
-            if(isset($items[$value['parent_id']]) && $value['parent_id'] !==0 ){
-                $items[$value['parent_id']]['children'][]= &$items[$key];
-            }else{
-                $tree[]=&$items[$key];
-            }
-        }
-        return $tree;
-    }
-
-    public function getParentList()
-    {
-        return CategoryResource::collection(Category::where('parent_id','=',0)->get());
     }
 }

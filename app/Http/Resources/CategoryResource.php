@@ -17,9 +17,10 @@ class CategoryResource extends Resource
         // return parent::toArray($request);
         return [
             'id' => $this -> id,
-            'par_id' => $this -> par_id,
-            'cat_name' => $this -> cat_name,
-            'cat_order' => $this -> cat_order,
+            'parent_id' => $this -> parent_id,
+            'name' => $this -> name,
+            'order' => $this -> order,
+            'description' => $this -> description
         ];
     }
 }

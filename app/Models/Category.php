@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Category extends Model
 {
+    protected $fillable =['name','parent_id','description','order'];
     //
-    public function company(){
-        return $this->hasMany('App\Models\Company','cat_id','id');
+    public function companys(){
+        return $this->hasMany('App\Models\Company','category_id','id');
     }
 }

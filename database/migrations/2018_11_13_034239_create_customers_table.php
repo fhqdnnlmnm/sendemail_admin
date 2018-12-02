@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEmailTemsTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateEmailTemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('email_tems', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('des');
-            $table->string('content');
+            $table->string('name')->unique();
+            $table->string('country');
+            $table->integer('category_id')->unsigned();#类别ID，外键；
+            $table->foreign('category_id')->references('id')->on('categories');#定义外键
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ class CreateEmailTemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('email_tems');
+        Schema::dropIfExists('customers');
     }
 }

@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Contact extends Model
 {
     //
-    public function company()
+    public function customers()
     {
-        return $this->belongsTo('App\Models\Company','com_id','id');
+        return $this->belongsTo('App\Models\Customer');
     }
 }
