@@ -18,9 +18,13 @@ use Illuminate\Support\Facades\DB;
 |
 */
 Route::group(['prefix' => 'v1'], function () {
-    Route::get('categories/tree_list','API\CategoryController@getTreeList');
+    Route::get('categories/getTreeList','API\CategoryController@getTreeList');
     Route::get('categories/getParentList','API\CategoryController@getParentList');
     Route::resource('categories','API\CategoryController');
+    Route::get('customers/getCountries','API\CustomerController@getCountries');
+    Route::resource('customers','API\CustomerController');
+    Route::resource('emailsenders','API\EmailSenderController');
+    Route::resource('emailTemplates','API\EmailTemplateController');
 });
 
 // Route::get('categories/tree_list','API\CategoryController@getTreeList');

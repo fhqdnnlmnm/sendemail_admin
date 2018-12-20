@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\EmailSender;
 
 class EmailSenderController extends Controller
 {
@@ -15,6 +16,7 @@ class EmailSenderController extends Controller
     public function index()
     {
         //
+        return EmailSender::all();
     }
 
     /**
@@ -36,6 +38,8 @@ class EmailSenderController extends Controller
     public function store(Request $request)
     {
         //
+       $emailsender= EmailSender::create($request->all());
+       return response($emailsender,202);
     }
 
     /**
@@ -67,9 +71,11 @@ class EmailSenderController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, EmailSender $emailsender)
     {
         //
+        $emailsender->update($request->all());
+        return response()->json($emailsender,202);
     }
 
     /**
@@ -81,5 +87,7 @@ class EmailSenderController extends Controller
     public function destroy($id)
     {
         //
+        EmailSender::destroy($id);
+        return response()->json(202);
     }
 }

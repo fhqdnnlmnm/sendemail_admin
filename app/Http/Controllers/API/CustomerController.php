@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
+use App\Http\Resources\CustomerResource;
+use App\Http\Resources\CustomerCollection;
 
 class CustomerController extends Controller
 {
@@ -12,9 +15,23 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $name = $request -> query('name');
+        $category_Id = $request -> query('category_id');
+        $page = $request -> query('page');
+        if(isset($name) || isset($category_Id)){
+            $tempName= urldecode($name);
+            $customers=Customer::with(['contacts','category'])
+            ->where('name','like','%'. $name.'%')
+            ->orWhere('category_id','=',$category_Id)
+            ->paginate(15);
+        }else{
+            $customers=Customer::with(['contacts','category'])
+            ->paginate(15);
+        }
+        return  new CustomerCollection($customers);
     }
 
     /**
@@ -36,6 +53,7 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+        return Customer::create($request->all());
     }
 
     /**
@@ -67,9 +85,11 @@ class CustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Customer $customer)
     {
         //
+        $customer->update($request->all());
+        return response()->json($customer,202);
     }
 
     /**
@@ -81,5 +101,12 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+        Customer::destroy($id);
+        return response()->json(202);
+    }
+
+    public function getCountries()
+    {
+        return Customer::select('country')->distinct()->get();
     }
 }

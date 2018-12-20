@@ -87,6 +87,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        Category::destroy($id);
+        return response()->json(202);
     }
 
    // 2.1 获取类别的树形列表（用于显示）

@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class EmailSender extends Model
 {
     //
+    protected $fillable=['email','description'];
 }
