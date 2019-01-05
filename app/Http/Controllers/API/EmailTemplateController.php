@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\EmailTemplate;
 
 class EmailTemplateController extends Controller
 {
@@ -15,6 +16,8 @@ class EmailTemplateController extends Controller
     public function index()
     {
         //
+        return EmailTemplate::all();
+
     }
 
     /**
@@ -36,6 +39,8 @@ class EmailTemplateController extends Controller
     public function store(Request $request)
     {
         //
+        $emailtemplate=EmailTemplate::create($request->all());
+        return response()->json($emailtemplate,202);
     }
 
     /**
@@ -67,9 +72,11 @@ class EmailTemplateController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, EmailTemplate $emailtemplate)
     {
         //
+        $emailtemplate->update($request->all());
+        return response()->json($emailtemplate,202);
     }
 
     /**
@@ -81,5 +88,7 @@ class EmailTemplateController extends Controller
     public function destroy($id)
     {
         //
+        EmailTemplate::destroy($id);
+        return response()->json(202);
     }
 }

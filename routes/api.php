@@ -24,7 +24,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('customers/getCountries','API\CustomerController@getCountries');
     Route::resource('customers','API\CustomerController');
     Route::resource('emailsenders','API\EmailSenderController');
-    Route::resource('emailTemplates','API\EmailTemplateController');
+    Route::resource('emailtemplates','API\EmailTemplateController');
 });
 
 // Route::get('categories/tree_list','API\CategoryController@getTreeList');

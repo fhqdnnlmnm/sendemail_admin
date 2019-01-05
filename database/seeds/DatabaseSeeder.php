@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(CategoriesTableSeeder::class);
         // $this->call(CustomersTableSeeder::class);
         // EmailSender模型数据填充
-        $emailsenders= factory(App\Models\EmailSender::class)->times(5)->create();
+        // $emailsenders= factory(App\Models\EmailSender::class)->times(5)->create();
+        factory(App\Models\EmailTemplate::class)->times(5)->create();
     }
 }
