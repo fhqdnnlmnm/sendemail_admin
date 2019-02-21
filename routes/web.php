@@ -17,7 +17,7 @@ use App\Exports\UserExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('app');
 });
 
 Route::get('/sendemail',function(){
