@@ -10,6 +10,10 @@ const constantRouterMap=[
         path:'/',
         component:Layout,
         name:'Dashboard'
+    },
+    {
+        path:'/home',
+        name:'Home'
     }
 ]
 

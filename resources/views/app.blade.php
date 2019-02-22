@@ -9,7 +9,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css"/>
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
 
-    <title>Roast</title>
+    <title>SendEmail</title>
 
     <script type='text/javascript'>
         window.Laravel = <?php echo json_encode([
