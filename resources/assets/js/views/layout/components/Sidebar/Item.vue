@@ -12,18 +12,34 @@ export default {
             default:''
         }
     },
-    render:function (h,context){
-        const {icon,title} = context.props
-        const vnodes=[]
-
-        if(icon){
-            vnodes.push("<i class={(icon)}></i>")
+    render:function (createElement){
+        var nodes=[];
+        if(this.icon){
+            nodes.push(createElement(
+                'i',
+                {
+                    class:this.icon
+                }
+            ))
+        }
+        if(this.title){
+            nodes.push(createElement(
+                'span',
+                
+            ))
         }
 
-        if(title){
-            vnodes.push("<span slot='title'>{(title)}</span>")
         }
-        return vnodes
-    }
+        // const {icon,title} = context.props
+        // const vnodes=[]
+
+        // if(icon){
+        //     vnodes.push("<i class={(icon)}></i>")
+        // }
+
+        // if(title){
+        //     vnodes.push("<span slot='title'>{(title)}</span>")
+        // }
+        // return vnodes
 }
 </script>
